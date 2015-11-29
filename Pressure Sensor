@@ -25,6 +25,13 @@ void setup()
 
     void loop() 
 {
+
+Your name: Guo Jun , Zhimin and Humairah
+Purpose: Pressure sensor is to detect the weight of the food. At certain level , bulb and LCD Display will light up and message will be sent.
+For important functions/method within each file:
+- we uses pressure formula to output a voltage measurement.
+- If the voltage is less than 0.20, it will send message to the waiter , LCD Display will be activate and bulb will light up .
+
   // Read the input on analog pin 0:
   int sensorValue = analogRead(A0);
   
