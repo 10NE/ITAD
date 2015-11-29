@@ -1,0 +1,75 @@
+// Example testing sketch for various DHT humidity/temperature sensors
+// Written by ladyada, public domain
+
+#include "DHT.h"
+
+#include <Wire.h>
+
+#include <LGSM.h>
+
+#include "rgb_lcd.h"
+
+#define DHTPIN 4    // what pin we're connected to
+
+#define DHTTYPE DHT22   // DHT 22  (AM2302)
+
+DHT dht(DHTPIN, DHTTYPE);
+
+
+rgb_lcd lcd;
+const int colorR = 255;
+const int colorG = 0;
+const int colorB = 0;
+
+
+void setup() 
+{
+    Serial.begin(9600); 
+    Serial.println("DHTxx test!");
+
+    dht.begin();
+    
+    lcd.begin(16, 2);
+  lcd.setRGB(colorR, colorG, colorB);
+
+}
+
+void loop() 
+{
+    // Reading temperature or humidity takes about 250 milliseconds!
+    // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
+    
+    float t = 0.0;
+    float h = 0.0;
+   
+    
+    if(dht.readHT(&t, &h))
+    {
+        Serial.println("------------------------------");
+        Serial.print("The current temperature = ");
+        Serial.println(t);
+   
+   if (t > 35.00) {
+       lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Please topup your tray");
+        while(!LSMS.ready())
+    {
+        delay(2000);
+    }
+    
+    LSMS.beginSMS("91874247");
+    LSMS.print("Please heat up the food");
+    if(LSMS.endSMS())
+    {
+      Serial.println("Message has been sent");
+    }
+    else
+    {
+      Serial.println("SMS is not sent");
+    }
+
+   }
+}
+    delay(2000);
+}
