@@ -33,6 +33,11 @@ void setup()
 
     void loop() 
 {
+
+Your name: Humairah
+Purpose: This is to combine both sensor code to make it work within one LinkIT Board.
+For important functions/method within each file: Nothing is needed to change . Hence, it is what stated in the two separate file .
+
   
     
   // Read the input on analog pin 0:
