@@ -36,6 +36,13 @@ void setup()
 
 void loop() 
 {
+
+Your name: Humairah
+Purpose: Temperature sensor is to detect the heat of the food and notify the waiter via message.
+For important functions/method within each file:
+- We made the temperature output a decimal reading
+- Whenever the temperature reaches less than 35.00, a message will be send to the waitress handphone.
+
     // Reading temperature or humidity takes about 250 milliseconds!
     // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
     
@@ -49,10 +56,7 @@ void loop()
         Serial.print("The current temperature = ");
         Serial.println(t);
    
-   if (t > 35.00) {
-       lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Please topup your tray");
+   if (t < 35.00) {
         while(!LSMS.ready())
     {
         delay(2000);
